@@ -1,3 +1,11 @@
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Find the .env file in the main project folder.
+env_path = Path(__file__).resolve().parent.parent / ".env"
+
+# Load the API key from that file.
+load_dotenv(dotenv_path=env_path, override=True)
 
 from agent import F1Agent, GeminiModel
 

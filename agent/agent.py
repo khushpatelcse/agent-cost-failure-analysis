@@ -12,8 +12,8 @@ and asks the model to write the final answer.
 
 import json
 import time
+import os
 from datetime import datetime
-
 
 """Tools the agents can use."""
 TOOL_ARGUMENTS = {
@@ -330,7 +330,14 @@ class GeminiModel:
         from google.genai import types
 
         # Create a connection to Gemini using your environment variable.
-        self.client = genai.Client()
+        # Get the Gemini API key from the environment.
+        api_key = os.getenv("GEMINI_API_KEY")
+
+        if not api_key:
+           raise ValueError("GEMINI_API_KEY was not found. Check your .env file.")
+
+        # Connect to Gemini using the API key.
+        self.client = genai.Client(api_key=api_key)
         self.types = types
         self.model_name = model_name
 
