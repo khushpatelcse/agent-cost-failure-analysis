@@ -7,7 +7,10 @@ env_path = Path(__file__).resolve().parent.parent / ".env"
 # Load the API key from that file.
 load_dotenv(dotenv_path=env_path, override=True)
 
-from agent import F1Agent, GeminiModel
+# Import the agent and model separately
+
+from agent import F1Agent
+from model import GeminiModel
 
 from tools import (
     get_race_results,
